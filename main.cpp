@@ -1,7 +1,17 @@
+#include "prototype.h"
 #include <iostream>
+
 using namespace std;
 
-class IntArr
+
+int main()
+{
+    vector131<int> vec;
+    vec.push_back();
+
+}
+
+/* class IntArr
 {
     private:
     int cap;                // Size of array
@@ -42,7 +52,6 @@ class IntArr
         nrOfE1 = 0;
         arr = new int [cap];
     }
-
     ~IntArr()               // destructor
     {
         delete[]arr;        
@@ -104,10 +113,10 @@ int main()
 
     for (size_t i = 0; i < arr.getNrOfE1();i++)
     {
-        cout << "vector[" << i << "] "<< ": " << arr.getAt(i) << endl;
+        cout << i << ": " << arr.getAt(i) << endl;
     }
 
     system("PAUSE");
 
     return 0;
-}
+} */
