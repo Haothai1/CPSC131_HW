@@ -1,15 +1,16 @@
 #include <iostream>
 using namespace std;
 
-class vector131{
+class IntArr
+{
     private:
-    int cap;
-    int nrOfE1;
-    int *arr;
+    int cap;                // Size of array
+    int nrOfE1;             // Number of Elements
+    int *arr;               // array pointer
 
     void initialize(int from)
     {
-        for (size_t = from; i < cap; i++)
+        for (size_t i = from; i < cap; i++)
         {
             arr[i] = 0;
         }
@@ -33,27 +34,21 @@ class vector131{
         initialize(nrOfE1);
     }
 
-    void initialize(int from)
-    {
-        for (size_t i = from; i < cap; i++)
-        {
-            arr[i] = 0;
-        }
-    }
+    
     public:
-    IntArr()
+    IntArr()                // constructor
     {
         cap=10;
         nrOfE1 = 0;
         arr = new int [cap];
     }
 
-    ~IntArr()
+    ~IntArr()               // destructor
     {
-        delete[]arr;
+        delete[]arr;        
     }
 
-    void add(int e1)
+    void add(int e1)       
     {
         if (nrOfE1 >= cap)
         {
@@ -63,11 +58,11 @@ class vector131{
         arr[nrOfE1++] = e1;
     }
 
-    void getAt(int index)
+    int getAt(int index)
     {
         if(index <0 || index >= nrOfE1)
         {
-            throw("Out of bounds exception!");
+             throw("Out of bounds exception!");
         }
         return arr[index];
     }
@@ -86,15 +81,33 @@ class vector131{
 
         }
     }   
+
+    int getNrOfE1()
+    {
+        return nrOfE1; 
+    }
 };
 
 
 
-int main(){
+int main()
+{
     IntArr arr;
-    arr.add(10);
+    int size_array, size;
 
-    cout << arr.getAt(0) << endl;
+    cout << "Enter the size of the array: " << endl;
+    cin >> size_array;
+
+
+    arr.add(size_array);
+    
+
+    for (size_t i = 0; i < arr.getNrOfE1();i++)
+    {
+        cout << "vector[" << i << "] "<< ": " << arr.getAt(i) << endl;
+    }
+
+    system("PAUSE");
 
     return 0;
 }
