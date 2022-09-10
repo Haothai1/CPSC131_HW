@@ -1,38 +1,72 @@
 #include "prototype.hpp"
 #include <string>
 
-void Vector131::push_back (int size, int num)
+template<typename T>
+vector131<T>::vector131(int size)
 {
-    vec[size] = num;
-    size++;
+	this->cap = size;
+	this->nrOfEl = 0;
+	this->arr = new T*[this->cap];
+
+	initialize(this->nrOfEl);
 }
 
-void Vector131::push_front (int num, int cap)   /*  */
+template<typename T>
+vector131<T>::~vector131()
 {
-    if (num == capacity)
-    {
-        std::push_front(num);
-    }
-    else {
-        vec[cap] = num;
-    }
+	for (size_t i = 0; i < this->nrOfEl; i++)
+	{
+		delete this->arr[i];
+	}
+	delete[]this->arr;
 }
 
-int Vector131::resize(int size_declaration)
+template<typename T>
+T& vector131<T>::operator[](const int index)
 {
-    std::cout << "what is the size of array?" << endl; /* Ask the user for the array size */
-    std::cin >> size_declaration;
+	if (index < 0 || index >= this->nrOfEl)
+		throw("OUT OF BOUDNS!");
 
-    resize(size_declaration);       /* Used to resize vector */
-
-    return size_declaration;
+	return *this->arr[index];
 }
 
-
-void Vector131::print()     /* print vector */
+template<typename T>
+void vector131<T>::initialize(int from)
 {
-    for (int i = 0;i < size; i++)
-    {
-        std::cout << vec[i] << " ";
-    }
+	for (size_t i = from; i < cap; i++)
+	{
+		this->arr[i] = nullptr;
+	}
 }
+
+template<typename T>
+void vector131<T>::expand()
+{
+	this->cap *= 2;
+
+	T **tempArr = new T*[this->cap];
+
+	for (size_t i = 0; i < this->nrOfEl; i++)
+	{
+		tempArr[i] = this->arr[i];
+	}
+
+	delete[]this->arr;
+
+	this->arr = tempArr;
+
+	initialize(this->nrOfEl);
+
+}
+
+template<typename T>
+void vector131<T>::push(const T& element)
+{
+	if (this->nrOfEl >= this->cap)
+	{
+		this->expand();
+	}
+
+	this->arr[this->nrOfEl++] = new T(element);
+}
+

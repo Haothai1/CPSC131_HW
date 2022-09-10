@@ -6,23 +6,23 @@
 #pragma once
 
 
-
-
 template <typename T>
-
 class vector131{
     private:
-        int size_Array;
-        T *vec
+        int cap;            /* capacity of array */
+        int size_Array;     
+        
 
-        void push_back;
-        void push_front;
-        int resize;
-
-        void print;
     public:
-        vector131() {size; vector = }
+        T **arr;
+        vector131(int size = 5);
+        ~vector131();
 
+        void initialize(int from);
+        void expand();
+        void push(const T&element);
+        const int& size()const {return this->nrOfEl; }
+        T& operator[] (const int index);
 };
 
 #endif
